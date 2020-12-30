@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="proyecto1" default="all" basedir="." >
+
+  <property name="build.dir" value="build" />
+  <property name="src.dir"   value="src" />
+  <property name="doc.dir"   value="doc" />
+
+  <target name="all" depends="proyecto1.jar" />
+
+  <target name="proyecto1.jar" depends="compile.proyecto1">
+    <jar jarfile="proyecto1.jar">
+      <zipfileset dir="${build.dir}" prefix="" />
+      <manifest>
+        <attribute name="Main-Class" value="mx.unam.ciencias.edd.proyecto1.Proyecto1"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="compile.proyecto1">
+    <mkdir dir="${build.dir}"/>
+    <javac srcdir="${src.dir}"
+           destdir="${build.dir}"
+           debug="true"
+           debuglevel="lines,vars,source"
+           includeantruntime="false"
+           deprecation="true"
+           nowarn="off">
+      <compilerarg value="-Xlint:unchecked"/>
+    </javac>
+  </target>
+
+  <target name="doc" depends="compile.proyecto1">
+    <mkdir dir="${doc.dir}"/>
+    <javadoc packagenames="mx.unam.ciencias.edd.*"
+             sourcepath="src"
+             defaultexcludes="yes"
+             destdir="${doc.dir}"
+             charset="UTF-8"
+             author="false"
+             version="false"
+             use="true"
+             windowtitle="Estructuras de Datos">
+      <doctitle><![CDATA[<h1>Estructuras de Datos</h1>]]></doctitle>
+      <link href="http://docs.oracle.com/javase/8/docs/api/" />
+    </javadoc>
+  </target>
+
+  <target name="clean">
+    <delete file="proyecto1.jar"/>
+    <delete dir="${build.dir}"/>
+    <delete dir="${doc.dir}"/>
+  </target>
+
+</project>
