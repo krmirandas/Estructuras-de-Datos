@@ -9,9 +9,6 @@
 
 Compilación
 -------------------------
-Dentro del proyecto existe en una carpeta llamada "testCases" con casos
-prueba de la entrada y salida al proyecto.
-
 Para compilar el proyecto ubicarse en la carpeta del proyecto y escribir:
 
     ant
